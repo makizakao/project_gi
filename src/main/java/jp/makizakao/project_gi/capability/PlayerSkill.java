@@ -2,7 +2,7 @@ package jp.makizakao.project_gi.capability;
 
 import jp.makizakao.project_gi.capability.provider.PlayerSkillProvider;
 import jp.makizakao.project_gi.networking.packet.SyncSkillUsingStateToClientPacket;
-import jp.makizakao.project_gi.registries.ProjectGISkills;
+import jp.makizakao.project_gi.registry.ProjectGISkills;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;

@@ -1,18 +1,16 @@
 package jp.makizakao.project_gi.skill;
 
 import jp.makizakao.project_gi.constant.ProjectGITimes;
-import jp.makizakao.project_gi.registries.ProjectGISkills;
+import jp.makizakao.project_gi.registry.ProjectGISkills;
 import net.minecraft.server.level.ServerLevel;
-
-import java.util.Optional;
 
 import static jp.makizakao.project_gi.capability.PlayerElement.getElementOptional;
 
-public class TravellerWindBurst extends BaseBurst {
-    protected static TravellerWindBurst instance;
+public class TravelerWindBurst extends BaseBurst {
+    protected static TravelerWindBurst instance;
 
-    private TravellerWindBurst(int id) {
-        this.skillId = id;
+    private TravelerWindBurst() {
+        this.skillId = ProjectGISkills.nextId();
         this.duration = (int) (0.5 * ProjectGITimes.SECOND_TICK);
         this.coolDown = 15 * ProjectGITimes.SECOND_TICK;
         this.energyUsage = 70;
@@ -30,12 +28,8 @@ public class TravellerWindBurst extends BaseBurst {
                 });
     }
 
-    public static TravellerWindBurst getInstance(int id) {
-        instance = instance == null ? new TravellerWindBurst(id) : instance;
-        return instance;
-    }
-
-    public static TravellerWindBurst getInstance() {
+    public static TravelerWindBurst getInstance() {
+        instance = instance == null ? new TravelerWindBurst() : instance;
         return instance;
     }
 }

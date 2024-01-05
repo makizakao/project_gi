@@ -1,4 +1,4 @@
-package jp.makizakao.project_gi.registries;
+package jp.makizakao.project_gi.registry;
 
 import jp.makizakao.project_gi.ProjectGIMod;
 import jp.makizakao.project_gi.capability.PlayerSkill;
@@ -6,7 +6,7 @@ import jp.makizakao.project_gi.item.EyeOfGod;
 import jp.makizakao.project_gi.networking.PacketHandler;
 import jp.makizakao.project_gi.networking.packet.SkillCancelPacket;
 import jp.makizakao.project_gi.networking.packet.UseSkillPacket;
-import jp.makizakao.project_gi.skill.TravellerWindSkill;
+import jp.makizakao.project_gi.skill.TravelerWindSkill;
 import jp.makizakao.project_gi.util.ProjectGIKeybinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -42,7 +42,7 @@ public class ProjectGIKeyBindings {
                     .map(player -> player.getItemBySlot(EquipmentSlot.OFFHAND).getItem())
                     .filter(item -> item instanceof EyeOfGod)
                     .map(item -> ((EyeOfGod) item).getSkillId())
-                    .orElse(TravellerWindSkill.getInstance().getSkillId());
+                    .orElse(TravelerWindSkill.getInstance().getSkillId());
             getSkillOptional(Minecraft.getInstance().player)
                     .filter(p -> !ProjectGIKeybinding.USING_SKILL_KEY.consumeClick())
                     .filter(PlayerSkill::isUsing)

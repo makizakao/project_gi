@@ -1,9 +1,9 @@
-package jp.makizakao.project_gi.registries;
+package jp.makizakao.project_gi.registry;
 
 import jp.makizakao.project_gi.ProjectGIMod;
 import jp.makizakao.project_gi.item.EyeOfGod;
 import jp.makizakao.project_gi.item.TestItem;
-import jp.makizakao.project_gi.skill.TravellerWindSkill;
+import jp.makizakao.project_gi.skill.TravelerWindSkill;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,7 +16,7 @@ public class ProjectGIItems {
     public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item",
             () -> new TestItem(new Item.Properties()));
     public static final RegistryObject<Item> TEST_EYE_OF_GOD = ITEMS.register("eye_of_god_test",
-            () -> new EyeOfGod(new Item.Properties(), TravellerWindSkill.getInstance()));
+            () -> new EyeOfGod(new Item.Properties(), TravelerWindSkill.getInstance()));
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }

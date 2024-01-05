@@ -1,10 +1,9 @@
 package jp.makizakao.project_gi.entity;
 
-import jp.makizakao.project_gi.capability.provider.PlayerElementProvider;
 import jp.makizakao.project_gi.networking.packet.SyncSkillUsingStateToClientPacket;
-import jp.makizakao.project_gi.registries.ProjectGIEntityTypes;
-import jp.makizakao.project_gi.registries.ProjectGIParticles;
-import jp.makizakao.project_gi.registries.ProjectGISkills;
+import jp.makizakao.project_gi.registry.ProjectGIEntityTypes;
+import jp.makizakao.project_gi.registry.ProjectGIParticles;
+import jp.makizakao.project_gi.registry.ProjectGISkills;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;

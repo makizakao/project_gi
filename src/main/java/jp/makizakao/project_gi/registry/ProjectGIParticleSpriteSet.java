@@ -1,4 +1,4 @@
-package jp.makizakao.project_gi.registries;
+package jp.makizakao.project_gi.registry;
 
 import jp.makizakao.project_gi.ProjectGIMod;
 import jp.makizakao.project_gi.particle.TravellerWindSkillEntityParticles;

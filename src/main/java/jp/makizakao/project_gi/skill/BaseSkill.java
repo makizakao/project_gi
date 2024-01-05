@@ -1,7 +1,7 @@
 package jp.makizakao.project_gi.skill;
 
 
-import jp.makizakao.project_gi.registries.ProjectGISkills;
+import jp.makizakao.project_gi.registry.ProjectGISkills;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.function.Consumer;
