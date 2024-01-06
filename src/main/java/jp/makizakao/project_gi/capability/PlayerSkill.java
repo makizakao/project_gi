@@ -13,7 +13,7 @@ import java.util.Optional;
 import static jp.makizakao.project_gi.networking.PacketHandler.sendToPlayer;
 
 public class PlayerSkill {
-    private static final float COOL_DOWN_MULTIPLIER = 0.8f;
+    private static final float COOL_DOWN_MULTIPLIER = 0.625f;
     private int coolDownTime;
     private int durationTime;
     private boolean canUseSkill = true;
