@@ -1,7 +1,7 @@
 package jp.makizakao.project_gi.skill;
 
 import jp.makizakao.project_gi.constant.ProjectGITimes;
-import jp.makizakao.project_gi.entity.TravellerWindSkillEntity;
+import jp.makizakao.project_gi.entity.TravelerWindSkillEntity;
 import jp.makizakao.project_gi.registry.ProjectGISkills;
 import net.minecraft.server.level.ServerLevel;
 
@@ -15,7 +15,7 @@ public class TravelerWindSkill extends BaseSkill {
             ServerLevel world = player.getLevel();
             var pos = player.getEyePosition().add(0, -0.5, 0)
                     .add(player.getLookAngle().multiply(4.0, 4.0, 4.0));
-            var skill = new TravellerWindSkillEntity(player.getStringUUID(), world, pos);
+            var skill = new TravelerWindSkillEntity(player.getStringUUID(), world, pos);
             world.addFreshEntity(skill);
         };
     }

@@ -14,15 +14,13 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 
-import java.util.Iterator;
-
-public class TravellerWindSkillEntityModel<T extends Entity> extends EntityModel<T> {
+public class TravelerWindSkillEntityModel<T extends Entity> extends EntityModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
 			ProjectGIMod.getLocation.apply("traveller_wind_skill_entity_layer"), "main");
 	private final ModelPart core;
 
-	public TravellerWindSkillEntityModel(ModelPart root) {
+	public TravelerWindSkillEntityModel(ModelPart root) {
 		this.core = root.getChild("core");
 	}
 	public ModelPart getCore() {

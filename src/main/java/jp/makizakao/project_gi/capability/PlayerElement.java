@@ -19,6 +19,7 @@ public class PlayerElement {
     private int hydroEnergy = 0;
     private int pyroEnergy = 0;
     private int cryoEnergy = 0;
+    private ElementType elementType = ElementType.Anemo;
 
     private final BiFunction<Integer, Integer, Integer> getAddedEnergy =
             (now, added) -> Math.min(now + added, MAX_ELEMENT_ENERGY);
@@ -36,6 +37,10 @@ public class PlayerElement {
             case Pyro -> this.pyroEnergy;
             case Cryo -> this.cryoEnergy;
         };
+    }
+
+    public ElementType getElementType() {
+        return this.elementType;
     }
 
     public void addElementEnergy(int energy, ElementType type) {
@@ -62,6 +67,10 @@ public class PlayerElement {
         }
     }
 
+    public void setElementType(ElementType type) {
+        this.elementType = type;
+    }
+
     public static Optional<PlayerElement> getElementOptional(Player player) {
         return Optional.ofNullable(player)
                 .map(p -> p.getCapability(PlayerElementProvider.PLAYER_ELEMENT_CAPABILITY))
@@ -76,6 +85,7 @@ public class PlayerElement {
         tag.putInt("hydroEnergy", this.hydroEnergy);
         tag.putInt("pyroEnergy", this.pyroEnergy);
         tag.putInt("cryoEnergy", this.cryoEnergy);
+        tag.putInt("elementType", this.elementType.ordinal());
     }
     public void loadNBTTags(CompoundTag tag) {
         this.anemoEnergy = tag.getInt("anemoEnergy");
@@ -85,5 +95,6 @@ public class PlayerElement {
         this.hydroEnergy = tag.getInt("hydroEnergy");
         this.pyroEnergy = tag.getInt("pyroEnergy");
         this.cryoEnergy = tag.getInt("cryoEnergy");
+        this.elementType = ElementType.getElement(tag.getInt("elementType"));
     }
 }

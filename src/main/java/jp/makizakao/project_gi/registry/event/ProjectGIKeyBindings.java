@@ -1,4 +1,4 @@
-package jp.makizakao.project_gi.registry;
+package jp.makizakao.project_gi.registry.event;
 
 import jp.makizakao.project_gi.ProjectGIMod;
 import jp.makizakao.project_gi.capability.PlayerSkill;

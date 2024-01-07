@@ -1,7 +1,8 @@
-package jp.makizakao.project_gi.registry;
+package jp.makizakao.project_gi.registry.event;
 
 import jp.makizakao.project_gi.ProjectGIMod;
-import jp.makizakao.project_gi.entity.TravellerWindSkillEntity;
+import jp.makizakao.project_gi.entity.TravelerWindSkillEntity;
+import jp.makizakao.project_gi.registry.ProjectGIEntityTypes;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -10,6 +11,6 @@ import net.minecraftforge.fml.common.Mod;
 public class ProjectGIAttributes {
     @SubscribeEvent
     public static void register(EntityAttributeCreationEvent event) {
-        event.put(ProjectGIEntityTypes.TRAVELLER_WIND_SKILL_ENTITY.get(), TravellerWindSkillEntity.createAttributes().build());
+        event.put(ProjectGIEntityTypes.TRAVELLER_WIND_SKILL_ENTITY.get(), TravelerWindSkillEntity.createAttributes().build());
     }
 }

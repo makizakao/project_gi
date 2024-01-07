@@ -1,6 +1,7 @@
-package jp.makizakao.project_gi.registry;
+package jp.makizakao.project_gi.registry.event;
 
 import jp.makizakao.project_gi.ProjectGIMod;
+import jp.makizakao.project_gi.registry.ProjectGIItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;

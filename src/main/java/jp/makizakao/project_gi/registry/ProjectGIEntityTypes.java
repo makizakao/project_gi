@@ -1,7 +1,7 @@
 package jp.makizakao.project_gi.registry;
 
 import jp.makizakao.project_gi.ProjectGIMod;
-import jp.makizakao.project_gi.entity.TravellerWindSkillEntity;
+import jp.makizakao.project_gi.entity.TravelerWindSkillEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityType.EntityFactory;
@@ -14,8 +14,8 @@ import net.minecraftforge.registries.RegistryObject;
 public class ProjectGIEntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, ProjectGIMod.MOD_ID);
-    public static final RegistryObject<EntityType<TravellerWindSkillEntity>> TRAVELLER_WIND_SKILL_ENTITY =
-            createEntity("traveller_wind_skill_entity", TravellerWindSkillEntity::new,
+    public static final RegistryObject<EntityType<TravelerWindSkillEntity>> TRAVELLER_WIND_SKILL_ENTITY =
+            createEntity("traveler_wind_skill_entity", TravelerWindSkillEntity::new,
                     MobCategory.MISC, 1f, 1f);
 
 

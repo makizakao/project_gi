@@ -13,7 +13,7 @@ public class ProjectGIParticles {
             DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, ProjectGIMod.MOD_ID);
 
     public static final RegistryObject<SimpleParticleType> TRAVELLER_WIND_SKILL_ENTITY_PARTICLES =
-            PARTICLE_TYPES.register("traveller_wind_skill_entity_particles",
+            PARTICLE_TYPES.register("traveler_wind_skill_entity_particles",
                     () -> new SimpleParticleType(true));
 
     public static void register(IEventBus bus) {

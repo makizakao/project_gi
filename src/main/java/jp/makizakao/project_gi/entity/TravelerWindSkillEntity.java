@@ -27,7 +27,7 @@ import static jp.makizakao.project_gi.capability.PlayerElement.getElementOptiona
 import static jp.makizakao.project_gi.capability.PlayerSkill.getSkillOptional;
 import static jp.makizakao.project_gi.networking.PacketHandler.sendToPlayer;
 
-public class TravellerWindSkillEntity extends LivingEntity {
+public class TravelerWindSkillEntity extends LivingEntity {
     private static final double VACUUM_RANGE = 3.0;
     private static final double DAMAGE_RANGE = 4.0;
     private static final double FORCE = 0.1;
@@ -43,7 +43,7 @@ public class TravellerWindSkillEntity extends LivingEntity {
     private static final ProjectGISkills.ElementType ELEMENT_TYPE = ProjectGISkills.ElementType.Anemo;
     private static final EntityDataAccessor<String> OWNER_UUID;
     private static final EntityDataAccessor<Integer> TICK_COUNT;
-    public TravellerWindSkillEntity(EntityType<? extends TravellerWindSkillEntity> entityType, Level pLevel) {
+    public TravelerWindSkillEntity(EntityType<? extends TravelerWindSkillEntity> entityType, Level pLevel) {
         super(entityType, pLevel);
         this.entityData.set(OWNER_UUID, "");
         this.entityData.set(TICK_COUNT, 0);
@@ -51,7 +51,7 @@ public class TravellerWindSkillEntity extends LivingEntity {
         this.setInvulnerable(true);
     }
 
-    public TravellerWindSkillEntity(String uuid, Level pLevel, Vec3 pPos) {
+    public TravelerWindSkillEntity(String uuid, Level pLevel, Vec3 pPos) {
         this(ProjectGIEntityTypes.TRAVELLER_WIND_SKILL_ENTITY.get(), pLevel);
         this.setPos(pPos);
         this.entityData.set(OWNER_UUID, uuid);
@@ -207,7 +207,6 @@ public class TravellerWindSkillEntity extends LivingEntity {
             spawnCircleParticle(12, VACUUM_PARTICLE_RADIUS, 0, 0, VACUUM_PARTICLE_SPEED);
         }
     }
-
     private void spawnCircleParticle(int amount, double radius, int delay, double y, double speed) {
         int tickCount = this.entityData.get(TICK_COUNT) + delay % 360;
         for (int i = tickCount; i < 360; i += 360 / amount + tickCount) {
@@ -254,7 +253,7 @@ public class TravellerWindSkillEntity extends LivingEntity {
     }
 
     static {
-        OWNER_UUID = SynchedEntityData.defineId(TravellerWindSkillEntity.class, EntityDataSerializers.STRING);
-        TICK_COUNT = SynchedEntityData.defineId(TravellerWindSkillEntity.class, EntityDataSerializers.INT);
+        OWNER_UUID = SynchedEntityData.defineId(TravelerWindSkillEntity.class, EntityDataSerializers.STRING);
+        TICK_COUNT = SynchedEntityData.defineId(TravelerWindSkillEntity.class, EntityDataSerializers.INT);
     }
 }

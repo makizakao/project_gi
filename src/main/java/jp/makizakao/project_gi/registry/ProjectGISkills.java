@@ -5,6 +5,7 @@ import jp.makizakao.project_gi.skill.TravelerWindBurst;
 import jp.makizakao.project_gi.skill.TravelerWindSkill;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,6 +27,13 @@ public class ProjectGISkills {
         Dendro,
         Hydro,
         Pyro,
-        Cryo,
+        Cryo;
+
+        public static ElementType getElement(int typeInt) {
+            return Arrays.stream(ElementType.values())
+                    .filter(type -> type.ordinal() == typeInt)
+                    .findFirst()
+                    .orElse(Anemo);
+        }
     }
 }

@@ -8,10 +8,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class TravellerWindSkillEntityParticles extends TextureSheetParticle {
-    protected TravellerWindSkillEntityParticles(ClientLevel pLevel, SpriteSet pSprites,
-                                                double pX, double pY, double pZ,
-                                                double pXSpeed, double pYSpeed, double pZSpeed) {
+public class TravelerWindSkillEntityParticles extends TextureSheetParticle {
+    protected TravelerWindSkillEntityParticles(ClientLevel pLevel, SpriteSet pSprites,
+                                               double pX, double pY, double pZ,
+                                               double pXSpeed, double pYSpeed, double pZSpeed) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.friction = 0.8f;
         this.quadSize *= 1.5f;
@@ -47,7 +47,7 @@ public class TravellerWindSkillEntityParticles extends TextureSheetParticle {
         public Particle createParticle(@NotNull SimpleParticleType simpleParticleType,
                                        @NotNull ClientLevel clientLevel,
                                        double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new TravellerWindSkillEntityParticles(clientLevel, sprites, x, y, z, xSpeed, ySpeed, zSpeed);
+            return new TravelerWindSkillEntityParticles(clientLevel, sprites, x, y, z, xSpeed, ySpeed, zSpeed);
 
         }
     }

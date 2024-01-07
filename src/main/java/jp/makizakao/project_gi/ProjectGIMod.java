@@ -3,6 +3,7 @@ package jp.makizakao.project_gi;
 import com.mojang.logging.LogUtils;
 import jp.makizakao.project_gi.networking.PacketHandler;
 import jp.makizakao.project_gi.registry.*;
+import jp.makizakao.project_gi.registry.event.ProjectGICreativeTabs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
