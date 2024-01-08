@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = ProjectGIMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ProjectGIAttributes {
     @SubscribeEvent
-    public static void register(EntityAttributeCreationEvent event) {
-        event.put(ProjectGIEntityTypes.TRAVELLER_WIND_SKILL_ENTITY.get(), TravelerWindSkillEntity.createAttributes().build());
+    public static void onEntityAttributeCreationEvent(EntityAttributeCreationEvent event) {
     }
 }

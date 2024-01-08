@@ -58,8 +58,9 @@ public class ProjectGICapabilities {
                     .ifPresent(PlayerSkill::onCoolDownTick);
             event.player.getCapability(PlayerSkillProvider.PLAYER_SKILL_CAPABILITY)
                     .ifPresent(PlayerSkill::onSkillTick);
+            /*
             event.player.getCapability(PlayerElementProvider.PLAYER_ELEMENT_CAPABILITY)
-                    .ifPresent(PlayerElement::printEnergy);
+                    .ifPresent(PlayerElement::printEnergy); */
         }
     }
 }
