@@ -1,7 +1,7 @@
 package jp.makizakao.project_gi.capability;
 
 import jp.makizakao.project_gi.capability.provider.PlayerElementProvider;
-import jp.makizakao.project_gi.registry.ProjectGISkills.ElementType;
+import jp.makizakao.project_gi.registry.Skills.ElementType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.LazyOptional;

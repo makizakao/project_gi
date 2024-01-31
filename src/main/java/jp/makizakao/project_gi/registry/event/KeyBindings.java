@@ -20,7 +20,7 @@ import java.util.Optional;
 
 import static jp.makizakao.project_gi.capability.PlayerSkill.getSkillOptional;
 
-public class ProjectGIKeyBindings {
+public class KeyBindings {
     @Mod.EventBusSubscriber(modid = ProjectGIMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class KeyRegisterEvents {
         @SubscribeEvent

@@ -1,16 +1,16 @@
 package jp.makizakao.project_gi.skill;
 
-import jp.makizakao.project_gi.constant.ProjectGITimes;
+import jp.makizakao.project_gi.constant.Times;
 import jp.makizakao.project_gi.entity.TravelerWindSkillEntity;
-import jp.makizakao.project_gi.registry.ProjectGISkills;
+import jp.makizakao.project_gi.registry.Skills;
 import net.minecraft.server.level.ServerLevel;
 
 public class TravelerWindSkill extends BaseSkill {
     protected static TravelerWindSkill instance;
     private TravelerWindSkill() {
-        this.skillId = ProjectGISkills.nextId();
-        this.duration = 3 * ProjectGITimes.SECOND_TICK;
-        this.coolDown = 5 * ProjectGITimes.SECOND_TICK + duration;
+        this.skillId = Skills.nextId();
+        this.duration = 3 * Times.SECOND_TICK;
+        this.coolDown = 8 * Times.SECOND_TICK + duration;
         this.handler = player -> {
             ServerLevel world = player.getLevel();
             var pos = player.getEyePosition().add(0, -0.5, 0)

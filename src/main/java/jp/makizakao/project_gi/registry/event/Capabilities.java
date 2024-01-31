@@ -6,22 +6,16 @@ import jp.makizakao.project_gi.capability.PlayerSkill;
 import jp.makizakao.project_gi.capability.provider.PlayerElementProvider;
 import jp.makizakao.project_gi.capability.provider.PlayerSkillProvider;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static jp.makizakao.project_gi.capability.PlayerElement.getElementOptional;
-import static jp.makizakao.project_gi.capability.PlayerSkill.getSkillOptional;
-
 @Mod.EventBusSubscriber(modid = ProjectGIMod.MOD_ID)
-public class ProjectGICapabilities {
+public class Capabilities {
     @SubscribeEvent
     public static void onAttachCapabilitiesEvent(AttachCapabilitiesEvent<Entity> event) {
         if(event.getObject() instanceof Player) {

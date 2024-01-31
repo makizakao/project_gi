@@ -8,7 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = ProjectGIMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ProjectGIModelLayers {
+public class ModelLayers {
 
     @SubscribeEvent
     public static void register(EntityRenderersEvent.RegisterLayerDefinitions event) {

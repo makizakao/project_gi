@@ -1,9 +1,10 @@
 package jp.makizakao.project_gi.entity;
 
 import jp.makizakao.project_gi.networking.packet.SyncSkillUsingStateToClientPacket;
-import jp.makizakao.project_gi.registry.ProjectGIEntityTypes;
-import jp.makizakao.project_gi.registry.ProjectGIParticles;
-import jp.makizakao.project_gi.registry.ProjectGISkills;
+import jp.makizakao.project_gi.registry.EntityTypes;
+import jp.makizakao.project_gi.registry.Particles;
+import jp.makizakao.project_gi.registry.Skills;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -11,8 +12,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -41,7 +40,7 @@ public class TravelerWindSkillEntity extends Entity {
     private static final double MAIN_PARTICLE_SPEED = 0.25;
     private static final double VACUUM_PARTICLE_SPEED = -1;
     private static final double BLAST_PARTICLE_SPEED = 100;
-    private static final ProjectGISkills.ElementType ELEMENT_TYPE = ProjectGISkills.ElementType.Anemo;
+    private static final Skills.ElementType ELEMENT_TYPE = Skills.ElementType.Anemo;
     private static final EntityDataAccessor<String> OWNER_UUID;
     private static final EntityDataAccessor<Integer> TICK_COUNT;
     public TravelerWindSkillEntity(EntityType<? extends TravelerWindSkillEntity> entityType, Level pLevel) {
@@ -53,7 +52,7 @@ public class TravelerWindSkillEntity extends Entity {
     }
 
     public TravelerWindSkillEntity(String uuid, Level pLevel, Vec3 pPos) {
-        this(ProjectGIEntityTypes.TRAVELLER_WIND_SKILL_ENTITY.get(), pLevel);
+        this(EntityTypes.TRAVELLER_WIND_SKILL_ENTITY.get(), pLevel);
         this.setPos(pPos);
         this.entityData.set(OWNER_UUID, uuid);
     }
@@ -79,7 +78,7 @@ public class TravelerWindSkillEntity extends Entity {
         this.entityData.set(TICK_COUNT, this.entityData.get(TICK_COUNT) + 1);
         this.vacuumEntity();
         this.damageEntity();
-        this.spawnMainParticle();
+        this.spawnTestParticle();
         getSkillOptional(getOwner())
                 .filter(s -> !s.isUsing())
                 .ifPresent(i -> onRemove());
@@ -98,6 +97,8 @@ public class TravelerWindSkillEntity extends Entity {
     }
 
     private void vacuumEntity() {
+        this.spawnVacuumMainParticle();
+        this.spawnVacuumSubParticle();
         var vacuumAabb = new AABB(this.getX() - VACUUM_RANGE, this.getY() - VACUUM_RANGE,
                 this.getZ() - VACUUM_RANGE, this.getX() + VACUUM_RANGE, this.getY() + VACUUM_RANGE,
                 this.getZ() + VACUUM_RANGE);
@@ -155,9 +156,7 @@ public class TravelerWindSkillEntity extends Entity {
         }
     }
 
-
-
-    private void spawnMainParticle() {
+    private void spawnVacuumMainParticle() {
         if(this.entityData.get(TICK_COUNT) % 5 != 0) return;
         for(int i = 0; i < 2; i ++) {
             float phi = (float) (this.random.nextDouble() * Mth.PI * 2);
@@ -171,9 +170,37 @@ public class TravelerWindSkillEntity extends Entity {
             double aimPosY = this.getY() + 0.1;
             double aimPosZ = this.getZ();
 
-            this.level.addParticle(ProjectGIParticles.TRAVELLER_WIND_SKILL_ENTITY_PARTICLES.get(),
+            this.level.addParticle(Particles.TARGET_SEEKING_PARTICLE.get(),
                     posX, posY, posZ, aimPosX, aimPosY, aimPosZ);
         }
+    }
+
+    private void spawnVacuumSubParticle() {
+        if(this.entityData.get(TICK_COUNT) % 5 != 0) return;
+        for(int i = 0; i < 2; i ++) {
+            double posX = this.getX() + this.random.nextGaussian() * 1;
+            double posY = this.getY() + this.random.nextGaussian() * 1;
+            double posZ = this.getZ() + this.random.nextGaussian() * 1;
+
+            double xSpeed = (this.getX() - posX) * 10;
+            double ySpeed = (this.getY() - posY) * 0.1;
+            double zSpeed = (this.getZ() - posZ) * 10;
+
+            double red = 0.7;
+            double green = 1.0;
+            double blue = 0.7;
+
+            var options = new DustParticleOptions(new Vec3(red, green, blue).toVector3f(), 1.0f);
+            this.level.addParticle(options, posX, posY, posZ, xSpeed, ySpeed, zSpeed);
+        }
+    }
+
+    private void spawnTestParticle() {
+        if(this.entityData.get(TICK_COUNT) % 5 != 0) return;
+        double posX = this.getX() + this.random.nextGaussian() * 1.2;
+        double posY = this.getY() + this.random.nextGaussian() * 0.5;
+        double posZ = this.getZ() + this.random.nextGaussian() * 1.2;
+        this.level.addParticle(Particles.ORBITING_PARTICLE.get(), posX, posY, posZ, getX(), getY(), getZ());
     }
 
     @Override

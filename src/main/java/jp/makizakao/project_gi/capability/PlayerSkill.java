@@ -2,7 +2,7 @@ package jp.makizakao.project_gi.capability;
 
 import jp.makizakao.project_gi.capability.provider.PlayerSkillProvider;
 import jp.makizakao.project_gi.networking.packet.SyncSkillUsingStateToClientPacket;
-import jp.makizakao.project_gi.registry.ProjectGISkills;
+import jp.makizakao.project_gi.registry.Skills;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -55,9 +55,9 @@ public class PlayerSkill {
     public void useSkill(int skillId, ServerPlayer player) {
         if(canUseSkill)
         {
-            ProjectGISkills.skillList.get(skillId).getHandler().accept(player);
-            setCoolDownTime(ProjectGISkills.skillList.get(skillId).getCoolDown());
-            setDuration(ProjectGISkills.skillList.get(skillId).getDuration());
+            Skills.skillList.get(skillId).getHandler().accept(player);
+            setCoolDownTime(Skills.skillList.get(skillId).getCoolDown());
+            setDuration(Skills.skillList.get(skillId).getDuration());
             this.canUseSkill = false;
             this.isUsingSkill = true;
             sendToPlayer(new SyncSkillUsingStateToClientPacket(true), player);

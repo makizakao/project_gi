@@ -3,7 +3,7 @@ package jp.makizakao.project_gi;
 import com.mojang.logging.LogUtils;
 import jp.makizakao.project_gi.networking.PacketHandler;
 import jp.makizakao.project_gi.registry.*;
-import jp.makizakao.project_gi.registry.event.ProjectGICreativeTabs;
+import jp.makizakao.project_gi.registry.event.CreativeTabs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -22,18 +22,18 @@ public class ProjectGIMod {
     public ProjectGIMod() {
         onSetUp();
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ProjectGIItems.register(bus);
-        ProjectGIEntityTypes.register(bus);
-        ProjectGIParticles.register(bus);
+        Items.register(bus);
+        EntityTypes.register(bus);
+        Particles.register(bus);
         PacketHandler.registerMessages();
         bus.addListener(this::commonSetup);
-        bus.addListener(ProjectGICreativeTabs::addCreativeModTab);
-        bus.addListener(ProjectGIRenderers::onRegister);
+        bus.addListener(CreativeTabs::addCreativeModTab);
+        bus.addListener(Renderers::onRegister);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
     }
     private void onSetUp() {
-        ProjectGISkills.register();
+        Skills.register();
     }
 }

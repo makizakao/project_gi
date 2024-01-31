@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class ProjectGISkills {
+public class Skills {
     private static int id = 0;
     public static int nextId() {
         return id++;

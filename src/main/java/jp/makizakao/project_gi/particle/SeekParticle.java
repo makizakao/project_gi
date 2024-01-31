@@ -4,21 +4,18 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
-public class TravelerWindSkillEntityParticles extends TextureSheetParticle {
+public class SeekParticle extends TextureSheetParticle {
     private final Vec3 aimPos;
     private final float SPEED = 0.05F;
-    protected TravelerWindSkillEntityParticles(ClientLevel pLevel, SpriteSet pSprites,
-                                               double pX, double pY, double pZ,
-                                               double aimPosX, double aimPosY, double aimPosZ) {
+    protected SeekParticle(ClientLevel pLevel, SpriteSet pSprites,
+                           double pX, double pY, double pZ,
+                           double aimPosX, double aimPosY, double aimPosZ) {
         super(pLevel, pX, pY, pZ, aimPosX, aimPosY, aimPosZ);
         this.friction = 0.0f;
         this.gravity = 0.0f;
@@ -79,8 +76,7 @@ public class TravelerWindSkillEntityParticles extends TextureSheetParticle {
         public Particle createParticle(@NotNull SimpleParticleType simpleParticleType,
                                        @NotNull ClientLevel clientLevel,
                                        double x, double y, double z, double aimPosX, double aimPosY, double aimPosZ) {
-            return new TravelerWindSkillEntityParticles(clientLevel, sprites, x, y, z, aimPosX, aimPosY, aimPosZ);
-
+            return new SeekParticle(clientLevel, sprites, x, y, z, aimPosX, aimPosY, aimPosZ);
         }
     }
 }

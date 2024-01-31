@@ -1,7 +1,7 @@
 package jp.makizakao.project_gi.skill;
 
 
-import jp.makizakao.project_gi.registry.ProjectGISkills;
+import jp.makizakao.project_gi.registry.Skills;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.function.Consumer;
@@ -11,7 +11,7 @@ public abstract class BaseSkill {
     protected int skillId;
     protected int duration;
     protected int coolDown;
-    protected ProjectGISkills.ElementType elementType;
+    protected Skills.ElementType elementType;
     protected Consumer<ServerPlayer> handler;
     protected BaseSkill() {
     }
