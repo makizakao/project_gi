@@ -4,6 +4,8 @@ import jp.makizakao.project_gi.constant.Times;
 import jp.makizakao.project_gi.registry.Skills;
 import net.minecraft.server.level.ServerLevel;
 
+import java.util.Optional;
+
 import static jp.makizakao.project_gi.capability.PlayerElement.getElementOptional;
 
 public class TravelerWindBurst extends BaseBurst {
@@ -18,14 +20,12 @@ public class TravelerWindBurst extends BaseBurst {
 
         this.handler = player -> getElementOptional(player)
                 .filter(cap -> cap.getElementEnergy(elementType) >= energyUsage)
-                .ifPresent(cap -> {
-                    ServerLevel world = player.getLevel();
+                .ifPresent(cap -> Optional.of(player.serverLevel()).ifPresent(l -> {
+                    ServerLevel world = player.serverLevel();
                     var pos = player.getEyePosition().add(0, -0.5, 0)
                             .add(player.getLookAngle().multiply(4.0, 4.0, 4.0));
-                    //var skill = new TravellerWindBurstEntity(player.getStringUUID(), world, pos);
-                    //world.addFreshEntity(skill);
                     cap.consumeElementEnergy(elementType);
-                });
+                }));
     }
 
     public static TravelerWindBurst getInstance() {

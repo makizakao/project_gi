@@ -12,7 +12,7 @@ public class TravelerWindSkill extends BaseSkill {
         this.duration = 3 * Times.SECOND_TICK;
         this.coolDown = 8 * Times.SECOND_TICK + duration;
         this.handler = player -> {
-            ServerLevel world = player.getLevel();
+            ServerLevel world = player.serverLevel();
             var pos = player.getEyePosition().add(0, -0.5, 0)
                     .add(player.getLookAngle().multiply(4.0, 4.0, 4.0));
             var skill = new TravelerWindSkillEntity(player.getStringUUID(), world, pos);

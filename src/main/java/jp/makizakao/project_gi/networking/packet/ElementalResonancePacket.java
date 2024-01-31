@@ -32,7 +32,7 @@ public class ElementalResonancePacket implements IProjectGIPacket<ElementalReson
         context.enqueueWork(() -> {
             Optional.ofNullable(context.getSender())
                     .ifPresent(p -> {
-                        ServerLevel world = p.getLevel();
+                        ServerLevel world = p.serverLevel();
                         EntityType.COW.spawn(
                                 world, (ItemStack) null, null, p.blockPosition(),
                                 MobSpawnType.COMMAND, true, false);

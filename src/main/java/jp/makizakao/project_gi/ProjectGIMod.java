@@ -27,7 +27,6 @@ public class ProjectGIMod {
         Particles.register(bus);
         PacketHandler.registerMessages();
         bus.addListener(this::commonSetup);
-        bus.addListener(CreativeTabs::addCreativeModTab);
         bus.addListener(Renderers::onRegister);
     }
 

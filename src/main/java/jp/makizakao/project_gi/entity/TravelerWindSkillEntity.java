@@ -102,8 +102,10 @@ public class TravelerWindSkillEntity extends Entity {
         var vacuumAabb = new AABB(this.getX() - VACUUM_RANGE, this.getY() - VACUUM_RANGE,
                 this.getZ() - VACUUM_RANGE, this.getX() + VACUUM_RANGE, this.getY() + VACUUM_RANGE,
                 this.getZ() + VACUUM_RANGE);
-        List<Entity> entities = this.level.getEntities(this, vacuumAabb,
-                entity -> entity instanceof ItemEntity || entity instanceof Mob);
+        List<Entity> entities = Optional.of(this.level())
+                .map(l -> l.getEntities(this, vacuumAabb,
+                        entity -> entity instanceof ItemEntity || entity instanceof Mob))
+                .orElse(new ArrayList<>());
         for (var entity : entities) {
             double dx = this.getX() - entity.getX();
             double dy = this.getY() - entity.getY();
@@ -117,8 +119,9 @@ public class TravelerWindSkillEntity extends Entity {
         var damageAabb = new AABB(this.getX() - DAMAGE_RANGE, this.getY() - DAMAGE_RANGE,
                 this.getZ() - DAMAGE_RANGE, this.getX() + DAMAGE_RANGE, this.getY() + DAMAGE_RANGE,
                 this.getZ() + DAMAGE_RANGE);
-        List<Entity> mobs = this.level.getEntities(this, damageAabb,
-                entity -> entity instanceof Mob);
+        List<Entity> mobs = Optional.of(this.level())
+                .map(l -> l.getEntities(this, damageAabb, entity -> entity instanceof Mob))
+                .orElse(new ArrayList<>());
         for (var mob : mobs) {
             float distance = this.distanceTo(mob);
             if(this.entityData.get(TICK_COUNT) % DAMAGE_COOL_DOWN == 0) {
@@ -137,8 +140,9 @@ public class TravelerWindSkillEntity extends Entity {
         var damageAabb = new AABB(this.getX() - DAMAGE_RANGE, this.getY() - DAMAGE_RANGE,
                 this.getZ() - DAMAGE_RANGE, this.getX() + DAMAGE_RANGE, this.getY() + DAMAGE_RANGE,
                 this.getZ() + DAMAGE_RANGE);
-        List<Entity> mobs = this.level.getEntities(this, damageAabb,
-                entity -> entity instanceof Mob);
+        List<Entity> mobs = Optional.of(this.level())
+                .map(l -> l.getEntities(this, damageAabb, entity -> entity instanceof Mob))
+                .orElse(new ArrayList<>());
         for (var mob : mobs) {
             double dx = mob.getX() - this.getX();
             double dy = mob.getY() - this.getY();
@@ -170,8 +174,9 @@ public class TravelerWindSkillEntity extends Entity {
             double aimPosY = this.getY() + 0.1;
             double aimPosZ = this.getZ();
 
-            this.level.addParticle(Particles.TARGET_SEEKING_PARTICLE.get(),
-                    posX, posY, posZ, aimPosX, aimPosY, aimPosZ);
+            Optional.of(this.level())
+                    .ifPresent(l -> l.addParticle(Particles.TARGET_SEEKING_PARTICLE.get(),
+                            posX, posY, posZ, aimPosX, aimPosY, aimPosZ));
         }
     }
 
@@ -191,7 +196,8 @@ public class TravelerWindSkillEntity extends Entity {
             double blue = 0.7;
 
             var options = new DustParticleOptions(new Vec3(red, green, blue).toVector3f(), 1.0f);
-            this.level.addParticle(options, posX, posY, posZ, xSpeed, ySpeed, zSpeed);
+            Optional.of(this.level())
+                    .ifPresent(l -> l.addParticle(options, posX, posY, posZ, xSpeed, ySpeed, zSpeed));
         }
     }
 
@@ -200,7 +206,9 @@ public class TravelerWindSkillEntity extends Entity {
         double posX = this.getX() + this.random.nextGaussian() * 1.2;
         double posY = this.getY() + this.random.nextGaussian() * 0.5;
         double posZ = this.getZ() + this.random.nextGaussian() * 1.2;
-        this.level.addParticle(Particles.ORBITING_PARTICLE.get(), posX, posY, posZ, getX(), getY(), getZ());
+        Optional.of(this.level())
+                .ifPresent(l -> l.addParticle(
+                        Particles.ORBITING_PARTICLE.get(), posX, posY, posZ, getX(), getY(), getZ()));
     }
 
     @Override
@@ -234,7 +242,7 @@ public class TravelerWindSkillEntity extends Entity {
 
 
     private Player getOwner() {
-        return Optional.of(this.level)
+        return Optional.of(this.level())
                 .filter(l -> !l.isClientSide() || !this.entityData.get(OWNER_UUID).isEmpty())
                 .filter(l -> !this.entityData.get(OWNER_UUID).isEmpty())
                 .map(l -> l.getPlayerByUUID(UUID.fromString(this.entityData.get(OWNER_UUID))))
